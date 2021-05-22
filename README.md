@@ -1,7 +1,7 @@
 
 # Desafio Take Blip 🏆
 
--   Chatbot com fluxo conversacional c/ API integrando a Api do Github para visualização de repositórios específicos.
+-   Chatbot com fluxo conversacional c/ API intermediária integrando a Api do Github para visualização de repositórios específicos.
 
 ## [](https://github.com/rick9141/challenger-takeblip-chatbot#para-rodar-esse-projeto-voc%C3%AA-vai-precisar-das-seguintes-ferramentas-exclamation)Pre requisitos para rodar o projeto  ❗
 
