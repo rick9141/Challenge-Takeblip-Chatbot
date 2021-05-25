@@ -12,6 +12,8 @@
 
 -   NET 5.0
 -   Web API
+-   Containers/Docker
+-   Heroku Cloud
 
-## [](https://github.com/rick9141/challenger-takeblip-chatbot#tecnologias-implementadas-)Construindo  🚧
--   Em breve...
+## [](https://github.com/rick9141/challenger-takeblip-chatbot#tecnologias-implementadas-)Preview  🎥
+<img src="Documentation/chatPreview.gif" alt="chatPreview"/>
