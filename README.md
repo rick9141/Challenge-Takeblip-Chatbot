@@ -13,13 +13,6 @@
 -   NET 5.0
 -   Web API
 
-## [](https://github.com/rick9141/challenger-takeblip-chatbot#arquitetura-%EF%B8%8F)Sobre a Arquitetura  📐
-
--   Seguindo introduções básicas ao:
--   DDD
--   Service Patterns
--   Repository Patterns
-
 
 ##   Here is a random joke that'll make you laugh!
  ![Jokes Card](https://readme-jokes.vercel.app/api)
