@@ -1,8 +1,19 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 public class GithubModel
 {
-    public string full_name { get; set; }
-    public string description { get; set; }
-    public string language { get; set; }
-    public string created_at { get; set; }
+    [JsonPropertyName("full_name")]
+    public string FullName { get; set; }
 
+    [JsonPropertyName("description")]
+    public string Description { get; set; }
+
+    [JsonIgnore]
+    [JsonPropertyName("language")]
+    public string Language { get; set; }
+
+    [JsonIgnore]
+    [JsonPropertyName("created_at")]
+    public string CreatedAt { get; set; }
 }

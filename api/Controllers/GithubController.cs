@@ -30,13 +30,13 @@ namespace api.Controllers
                     <IEnumerable<GithubModel>>(responseStream);
 
                 if (!String.IsNullOrEmpty(language))
-                    list = list.Where(x => x.language == language);
+                    list = list.Where(x => x.Language == language);
 
                 if (createdAt > DateTime.MinValue)
-                    list = list.Where(x => x.created_at.Substring(0, 10) == createdAt.ToString("yyy-MM-dd").Substring(0, 10));
+                    list = list.Where(x => x.CreatedAt.Substring(0, 10) == createdAt.ToString("yyy-MM-dd").Substring(0, 10));
 
                 if (!String.IsNullOrEmpty(repositoryName))
-                    list = list.Where(x => x.full_name == repositoryName);
+                    list = list.Where(x => x.FullName == repositoryName);
 
                 return list;
             }
