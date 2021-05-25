@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
 namespace api.Controllers
 {
     [ApiController]
@@ -15,45 +13,35 @@ namespace api.Controllers
     {
 
         [HttpGet]
-        public async Task<IEnumerable<GithubModel>> Get(string profile, string language, DateTime created_at, int limit)
+        public async Task<IEnumerable<GithubModel>> GetRepositoriesGithub(string profile, int pageNumber, string language, string repositoryName, DateTime createdAt)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get,
-            "https://api.github.com/users/" + profile + "/repos");
+
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/users/" + profile + "/repos?" + "page=" + pageNumber);
             request.Headers.Add("Accept", "application/vnd.github.v3+json");
-            request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+            request.Headers.Add("User-Agent", "rick9141");
 
             var client = new HttpClient();
-
             HttpResponseMessage response = await client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
             {
                 var responseStream = await response.Content.ReadAsStreamAsync();
-                var lista = await JsonSerializer.DeserializeAsync
+                var list = await JsonSerializer.DeserializeAsync
                     <IEnumerable<GithubModel>>(responseStream);
 
                 if (!String.IsNullOrEmpty(language))
-                {
-                    lista = lista.Where(x => x.language == language);
-                }
+                    list = list.Where(x => x.language == language);
 
+                if (createdAt > DateTime.MinValue)
+                    list = list.Where(x => x.created_at.Substring(0, 10) == createdAt.ToString("yyy-MM-dd").Substring(0, 10));
 
-                if (created_at > DateTime.MinValue)
-                {
-                    lista = lista.Where(x => x.created_at.Substring(0, 10) == created_at.ToString("yyy-MM-dd").Substring(0, 10));
-                }
+                if (!String.IsNullOrEmpty(repositoryName))
+                    list = list.Where(x => x.full_name == repositoryName);
 
-
-                if (limit > 0)
-                {
-                    return lista.Where((item, index) => (index + 1 <= limit));
-                }
-
-                return lista;
+                return list;
             }
-
-
             return null;
         }
+
     }
 }
